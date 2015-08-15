@@ -1,8 +1,14 @@
 var express	= require('express');
 var app	= express();
 var cors = require('cors');
+var bodyParser = require('body-parser');
+var fs = require('fs-extra');
 
 app.use(cors());
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 
 var port = 5000;
 var router = express.Router();
@@ -33,6 +39,21 @@ router.route('/test_put')
 .post(function(req, res, next) {
 	console.log('TEST PUT');
 	res.json({ message: 'TEST PUT'});
+}), function (err) {
+	if(err) {
+		res.send(err);
+	}
+};
+
+router.route('/post_json')
+.post(function(req, res, next) {
+	console.log('POST JSON');
+	//res.json(req.body.data);
+	fs.writeJson('./post.json', JSON.parse(req.body.data), function (err) {
+		if(err) {
+			console.log('WRITE ERROR - ', err);
+		}
+	});
 }), function (err) {
 	if(err) {
 		res.send(err);
