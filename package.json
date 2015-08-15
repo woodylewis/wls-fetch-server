@@ -1,0 +1,15 @@
+{
+  "name": "wls-fetch",
+  "version": "1.0.0",
+  "description": "Server to receive and write json files",
+  "main": "fetch-server.js",
+  "dependencies": {
+    "express": "~4.11.1"
+  },
+  "scripts": {
+    "start": "node fetch-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Woody Lewis",
+  "license": "MIT"
+}
