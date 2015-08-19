@@ -48,10 +48,18 @@ router.route('/test_put')
 router.route('/post_json')
 .post(function(req, res, next) {
 	console.log('POST JSON');
-	//res.json(req.body.data);
-	fs.writeJson('./post.json', JSON.parse(req.body.data), function (err) {
+	var obj = JSON.parse(req.body.data),
+		name = obj.url;
+		name = name.substr(name.indexOf('/') + 1);
+		name += '.json';
+	console.log(name);
+	fs.writeJson(name, req.body.data, function (err) {
 		if(err) {
 			console.log('WRITE ERROR - ', err);
+			res.send('error');
+		}
+		else {
+			res.send('written');
 		}
 	});
 }), function (err) {
