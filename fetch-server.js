@@ -49,17 +49,22 @@ router.route('/post_json')
 .post(function(req, res, next) {
 	console.log('POST JSON');
 	var obj = JSON.parse(req.body.data),
-		name = obj.url;
-		name = name.substr(name.indexOf('/') + 1);
-		name += '.json';
-	console.log(name);
-	fs.writeJson(name, req.body.data, function (err) {
+		name = obj.url,
+		filename = 'assets/';
+	name = name.substr(name.indexOf('/') + 1);
+	name += '.json';
+	filename += name;
+
+	var re = /\/sites\/default\/files/gi,
+		newUrl = 'http://wls-nodeapp1.s3-website-us-east-1.amazonaws.com/assets';
+
+	obj.body = obj.body.replace(re, newUrl);
+	fs.writeJson(filename, obj, function (err) {
 		if(err) {
 			console.log('WRITE ERROR - ', err);
-			res.send('error');
 		}
 		else {
-			res.send('written');
+			console.log('WRITTEN');
 		}
 	});
 }), function (err) {
