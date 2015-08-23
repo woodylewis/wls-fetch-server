@@ -47,7 +47,7 @@ router.route('/test_put')
 
 router.route('/post_json')
 .post(function(req, res, next) {
-	console.log('POST JSON');
+	//console.log('POST JSON');
 	var obj = JSON.parse(req.body.data),
 		name = obj.url,
 		filename = 'assets/';
@@ -65,9 +65,10 @@ router.route('/post_json')
 			console.log('WRITE ERROR - ', err);
 		}
 		else {
-			console.log('WRITTEN');
+			console.log('wrote ', filename);
 		}
 	});
+	res.send('wrote ' + filename);
 }), function (err) {
 	if(err) {
 		res.send(err);
