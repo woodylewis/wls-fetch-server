@@ -56,7 +56,8 @@ router.route('/post_json')
 	filename += name;
 
 	var re = /\/sites\/default\/files/gi,
-		newUrl = 'http://wls-nodeapp1.s3-website-us-east-1.amazonaws.com/assets';
+		//newUrl = 'http://wls-nodeapp1.s3-website-us-east-1.amazonaws.com/assets';
+		newUrl = 'assets';
 
 	obj.body = obj.body.replace(re, newUrl);
 	fs.writeJson(filename, obj, function (err) {
