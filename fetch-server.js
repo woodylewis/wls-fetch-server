@@ -35,10 +35,18 @@ router.route('/test_get')
 	}
 };
 
-router.route('/test_put')
+router.route('/post_manifest')
 .post(function(req, res, next) {
-	console.log('TEST PUT');
-	res.json({ message: 'TEST PUT'});
+	//console.log(req.body.data);
+	fs.writeJson('manifest.json', req.body.data, function (err) {
+		if(err) {
+			console.log('WRITE ERROR - ', err);
+		}
+		else {
+			console.log('wrote manifest');
+		}
+	});
+	res.json({ message: 'WROTE POST MANIFEST'});
 }), function (err) {
 	if(err) {
 		res.send(err);

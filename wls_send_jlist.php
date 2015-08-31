@@ -3,10 +3,10 @@ header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Methods: GET');
 header('Access-Control-Allow-Headers: X-Requested-With');
 
-$hostname = 'localhost';
-$username = 'woody';
-$password = 'furnald65';
-$dbname  = 'acquia_7';
+$hostname = 'xxxxxxxx';
+$username = 'xxxxxxxx';
+$password = 'xxxxxxxx';
+$dbname  = 'xxxxxxxx';
 
 try 
 {
